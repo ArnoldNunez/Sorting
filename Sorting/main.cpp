@@ -9,6 +9,8 @@
 
 #define MAX_SIZE 255
 
+
+
 /**
  * Entry point for our program
  * \param argc The number of arguments given
@@ -22,7 +24,7 @@ int main(int argc, char* argv[])
 	char mode[MAX_SIZE];		///< The sorting algorithm to use
 	FILE* numList;				///< Ptr to the file with list of nums
 	int numArray[MAX_SIZE];		///< Where we will put all of the list nums
-	
+
 
 	/// Error checking -- 2 arguments required	
 	if (argc != 3)
@@ -40,6 +42,7 @@ int main(int argc, char* argv[])
 		printf("There was an error reading the file provided\n");
 		return 3;
 	}
+
 
 	/// Read numbers from file
 	while (true)
