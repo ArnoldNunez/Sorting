@@ -5,10 +5,10 @@
  */
 
 #include <cstdio>
+#include <cstring>
 
-
+/// The maximun allowed size of our arrays
 #define MAX_SIZE 255
-
 
 
 /**
@@ -18,12 +18,12 @@
  */
 int main(int argc, char* argv[])
 {
-	printf("Number of arguments: %d\n", argc);
-
 	char fileName[MAX_SIZE];	///< Buffer for file name
-	char mode[MAX_SIZE];		///< The sorting algorithm to use
 	FILE* numList;				///< Ptr to the file with list of nums
 	int numArray[MAX_SIZE];		///< Where we will put all of the list nums
+	int ndx = 0;				///< Index for placing numbers into array
+
+	printf("Welcome to Arnold's sorting program\n");
 
 
 	/// Error checking -- 2 arguments required	
@@ -44,14 +44,37 @@ int main(int argc, char* argv[])
 	}
 
 
-	/// Read numbers from file
-	while (true)
-	{
 
-		break;
+
+	/// Read numbers from file and store them in numArray
+	while (fscanf(numList, "%d", &numArray[ndx]) != EOF) { ndx++; }
+	fclose(numList);
+
+
+
+
+	/// Sorting algorithm selection
+	if (strcmp("insertion", argv[2]) == 0)
+	{
+		/// Run insertion sort on numbers array
+		printf("Running insertion sort algorithm, please wait...\n");
+	}
+	else if (strcmp("quick", argv[2]) == 0)
+	{
+		/// Run quick sort on numbers array
+		printf("Running quick sort algorithm, please wait...\n");
+	}
+	else
+	{
+		/// No correct algorithm given
+		printf("There was no correct algorithm given.\n");
+		printf("Program exiting\n");
+		return 4;
 	}
 
 
-	fclose(numList);
+
+
+
 	return 0;
 }
