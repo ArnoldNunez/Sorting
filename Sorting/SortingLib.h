@@ -10,6 +10,7 @@
  *		of different sorting algorithms.
  */
 
+#include <stdlib.h>
 
  /**
  * The basic idea behind the insertion sort algorithm is that
@@ -19,7 +20,7 @@
  * sub-array. You have to move all elements up by 1 to the right of
  * the location where the item will go.
  */
-void InsertionSort();
+void InsertionSort(int arr[], size_t len);
 
 void BubbleSort();
 

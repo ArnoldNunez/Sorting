@@ -4,12 +4,28 @@
  * \author Arnold Nunez
  */
 
-#include <cstdio>
-#include <cstring>
+#include "SortingLib.h"
+
+#include <stdio.h>
+#include <string.h>
 
 /// The maximun allowed size of our arrays
 #define MAX_SIZE 255
 
+
+/**
+ * Print the contents of the array (for testing purposes)
+ *
+ * \param arr The array to print the contents of
+ * \param len The # of elements in the array
+ */
+void PrintContent(int arr[], size_t len)
+{
+	for (size_t i = 0; i < len; ++i)
+	{
+		printf("Element: %d\n", arr[i]);
+	}
+}
 
 /**
  * Entry point for our program
@@ -18,12 +34,14 @@
  */
 int main(int argc, char* argv[])
 {
-	char fileName[MAX_SIZE];	///< Buffer for file name
 	FILE* numList;				///< Ptr to the file with list of nums
 	int numArray[MAX_SIZE];		///< Where we will put all of the list nums
 	int ndx = 0;				///< Index for placing numbers into array
 
 	printf("Welcome to Arnold's sorting program\n");
+
+
+
 
 
 	/// Error checking -- 2 arguments required	
@@ -50,14 +68,14 @@ int main(int argc, char* argv[])
 	while (fscanf(numList, "%d", &numArray[ndx]) != EOF) { ndx++; }
 	fclose(numList);
 
-
-
+	PrintContent(numArray, 10);
 
 	/// Sorting algorithm selection
 	if (strcmp("insertion", argv[2]) == 0)
 	{
 		/// Run insertion sort on numbers array
 		printf("Running insertion sort algorithm, please wait...\n");
+		InsertionSort(numArray, 10);
 	}
 	else if (strcmp("quick", argv[2]) == 0)
 	{
@@ -74,6 +92,8 @@ int main(int argc, char* argv[])
 
 
 
+	PrintContent(numArray, 10);
+	
 
 
 	return 0;
