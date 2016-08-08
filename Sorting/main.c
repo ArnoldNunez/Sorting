@@ -82,6 +82,12 @@ int main(int argc, char* argv[])
 		/// Run quick sort on numbers array
 		printf("Running quick sort algorithm, please wait...\n");
 	}
+	else if (strcmp("bubble", argv[2]) == 0)
+	{
+		/// Run bubble sort on number array
+		printf("Running bubble sort algorithm, please wait...\n");
+		BubbleSort(numArray, 10);
+	}
 	else
 	{
 		/// No correct algorithm given
