@@ -23,6 +23,7 @@
  * the location where the item will go.
  *
  * \param arr The array to sort (ptr)
+ * \param len The number of elements in the array
  */
 void InsertionSort(int arr[], size_t len);
 
@@ -38,6 +39,17 @@ void InsertionSort(int arr[], size_t len);
  * \param len The number of elements in the array
  */
 void BubbleSort(int arr[], size_t len);
+
+/** Sort the array using the Selection sort algorithm
+ *
+ * Selection sort works by finding the smallest item
+ * in a subarray and swapping it into the end of the
+ * part of the array that is already sorted.
+ *
+ * \param arr The array to sort (ptr)
+ * \param len The number of elements in the array
+ */
+void SelectionSort(int arr[], size_t len);
 
 void QuickSort();
 

@@ -27,6 +27,8 @@ void PrintContent(int arr[], size_t len)
 	}
 }
 
+
+
 /**
  * Entry point for our program
  * \param argc The number of arguments given
@@ -69,6 +71,9 @@ int main(int argc, char* argv[])
 	fclose(numList);
 
 	PrintContent(numArray, 10);
+	printf("Index of smallest element: %d\n", FindSmalls(numArray, 0, 10));
+
+
 
 	/// Sorting algorithm selection
 	if (strcmp("insertion", argv[2]) == 0)
@@ -87,6 +92,12 @@ int main(int argc, char* argv[])
 		/// Run bubble sort on number array
 		printf("Running bubble sort algorithm, please wait...\n");
 		BubbleSort(numArray, 10);
+	}
+	else if (strcmp("selection", argv[2]) == 0)
+	{
+		/// Run selection sort on number array
+		printf("Running selection sort algorithm, please wait...\n");
+		SelectionSort(numArray, 10);
 	}
 	else
 	{
