@@ -51,6 +51,20 @@ void BubbleSort(int arr[], size_t len);
  */
 void SelectionSort(int arr[], size_t len);
 
+
+/** Sort the array using the Merge sort algorithm
+ *
+ * Merge sort works by dividing up the original array
+ * recursively until you only have 1 element in the sub array.
+ * Then the sorting is done by merging those sub arrays in 
+ * order. We should divide the arrays in half each call.
+ *
+ * \param arr The array to sort (ptr)
+ * \param low The starting index of the array
+ * \param end The ending index of the array
+ */
+void MergeSort(int arr[], int start, int end);
+
 void QuickSort();
 
 #endif

@@ -160,6 +160,31 @@ void SelectionSort(int arr[], size_t len)
 	}
 }
 
+
+/** Sort the array using the Merge sort algorithm
+*
+* Merge sort works by dividing up the original array
+* recursively until you only have 1 element in the sub array.
+* Then the sorting is done by merging those sub arrays in
+* order. We should divide the arrays in half each call.
+*
+* \param arr The array to sort (ptr)
+* \param start The starting index of the array
+* \param end The ending index of the array
+*/
+void MergeSort(int arr[], int start, int end)
+{
+	/// Only call recursively if there is more than 1 item in sub array
+	if (end > start)
+	{
+		/// Index of middle. We want to cut off the decimal hence int
+		int mid = (p + r) / 2;		///< IF this doesn't work maybe use round or floor
+		mergeSort(arr, start, end);
+		mergeSort(arr, mid + 1, end);
+		// merge(arr, p, q, r);
+	}
+}
+
 void QuickSort()
 {
 
