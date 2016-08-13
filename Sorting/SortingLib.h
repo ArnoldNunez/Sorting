@@ -60,7 +60,7 @@ void SelectionSort(int arr[], size_t len);
  * order. We should divide the arrays in half each call.
  *
  * \param arr The array to sort (ptr)
- * \param low The starting index of the array
+ * \param start The starting index of the array
  * \param end The ending index of the array
  */
 void MergeSort(int arr[], int start, int end);

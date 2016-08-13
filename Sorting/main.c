@@ -71,7 +71,6 @@ int main(int argc, char* argv[])
 	fclose(numList);
 
 	PrintContent(numArray, 10);
-	printf("Index of smallest element: %d\n", FindSmalls(numArray, 0, 10));
 
 
 
@@ -98,6 +97,12 @@ int main(int argc, char* argv[])
 		/// Run selection sort on number array
 		printf("Running selection sort algorithm, please wait...\n");
 		SelectionSort(numArray, 10);
+	}
+	else if (strcmp("merge", argv[2]) == 0)
+	{
+		/// Run merge sort on number array
+		printf("Running merge sort algorithm, please wait...\n");
+		MergeSort(numArray, 0, 9);
 	}
 	else
 	{

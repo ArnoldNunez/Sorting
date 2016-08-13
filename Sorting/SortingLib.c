@@ -73,6 +73,76 @@ size_t FindSmall(int arr[], size_t startndx, size_t len)
 	return minLoc;
 }
 
+/** Merges the array into the correct order
+ *
+ * \param start The starting index of the array
+ * \param mid The middle point index of the array
+ * \param end The ending index of the array
+ */
+void Merge(int arr[], int start, int mid, int end)
+{
+	int sizeLow = mid - start + 1;	///< Size of low array
+	int sizeHigh = end - mid;		///< Size of high array
+	int lowArray[sizeLow];			///< Temp array for subarray from start to mid
+	int highArray[sizeHigh];		///< Temp array for subarray from mid+1 to end
+
+	int k = start;					///< Index of original array
+	int i;							///< Index of low array
+	int j;							///< Index of high array
+
+	/// Populate the subarrays
+	for (i = 0; i < sizeLow; ++i, ++k)
+	{
+		/// Populate low array
+		lowArray[i] = arr[k];
+	}
+	for (j = 0; j < sizeHigh; ++j, ++k)
+	{
+		/// Populate high array
+		highArray[j] = arr[k];
+	}
+
+	k = start;
+	i = 0;
+	j = 0;
+
+	/// Compare lowest elements of both subarrays and put lowest into new array
+	/// Until one of the subarrays is depleted
+	while ( (i < sizeLow)  && (j < sizeHigh) )
+	{
+		if (lowArray[i] < highArray[j])
+		{
+			/// Move low array element to array
+			arr[k] = lowArray[i];
+			++i;
+		}
+		else
+		{
+			/// Move high array element to array
+			arr[k] = highArray[j];
+			++j;
+		}
+		++k;
+	}
+
+	/// Case: low array not depleted yet
+	while (i < sizeLow)
+	{
+		arr[k] = lowArray[i];
+		++i;
+		++k;
+	}
+
+	/// Case: high array not depleted yet
+	while (j < sizeHigh)
+	{
+		arr[k] = highArray[j];
+		++j;
+		++k;
+	}
+
+
+}
 /*----------------------------------------------------------------*/
 
 
@@ -175,13 +245,14 @@ void SelectionSort(int arr[], size_t len)
 void MergeSort(int arr[], int start, int end)
 {
 	/// Only call recursively if there is more than 1 item in sub array
-	if (end > start)
+	if (start < end)
 	{
+		printf("MergeSort calling recursively\n");
 		/// Index of middle. We want to cut off the decimal hence int
-		int mid = (p + r) / 2;		///< IF this doesn't work maybe use round or floor
-		mergeSort(arr, start, end);
-		mergeSort(arr, mid + 1, end);
-		// merge(arr, p, q, r);
+		int mid = (start + end) / 2;		///< IF this doesn't work maybe use round or floor
+		MergeSort(arr, start, mid);
+		MergeSort(arr, mid + 1, end);
+		Merge(arr, start, mid, end);
 	}
 }
 
