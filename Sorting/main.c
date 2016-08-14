@@ -85,6 +85,7 @@ int main(int argc, char* argv[])
 	{
 		/// Run quick sort on numbers array
 		printf("Running quick sort algorithm, please wait...\n");
+		QuickSort(numArray, 0, 9);
 	}
 	else if (strcmp("bubble", argv[2]) == 0)
 	{

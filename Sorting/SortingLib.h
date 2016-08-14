@@ -65,6 +65,17 @@ void SelectionSort(int arr[], size_t len);
  */
 void MergeSort(int arr[], int start, int end);
 
-void QuickSort();
+
+/** Sort the array using the Quick sort algorithm
+ *
+ * Quick sort works a lot like the merge sort algorithm.
+ * The difference is that quick sort does all the sorting
+ * work in the partitioning portion instead of the merging.
+ * Quicksort uses a pivot and places all elements less than
+ * the pivot to the left and all elements higher than the pivot
+ * to the right. This is done recursively which sorts the array.
+ * The merge step does nothing.
+ */
+void QuickSort(int arr[], int start, int end);
 
 #endif

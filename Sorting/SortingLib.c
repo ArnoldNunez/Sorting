@@ -143,6 +143,33 @@ void Merge(int arr[], int start, int mid, int end)
 
 
 }
+
+/** Partitions the array using pivot at end (arr[end])
+ *
+ * \param arr The array to partition
+ * \param start The starting index of the array
+ * \param end The ending index of the array
+ */
+int partition(int arr[], int start, int end)
+{
+	/// Loc where pivot will have to be placed
+	int pivotLoc = start;
+
+
+	for (int i = start; i < end; ++i)
+	{
+		if (arr[i] <= arr[end])
+		{
+			/// Item less than pivot swap it with pivot location
+			swap(arr, i, pivotLoc);
+			++pivotLoc;
+		}
+	}
+
+	/// place pivot at its correct location
+	swap(arr, end, pivotLoc);
+	return pivotLoc;
+}
 /*----------------------------------------------------------------*/
 
 
@@ -256,7 +283,26 @@ void MergeSort(int arr[], int start, int end)
 	}
 }
 
-void QuickSort()
+/** Sort the array using the Quick sort algorithm
+*
+* Quick sort works a lot like the merge sort algorithm.
+* The difference is that quick sort does all the sorting
+* work in the partitioning portion instead of the merging.
+* Quicksort uses a pivot and places all elements less than
+* the pivot to the left and all elements higher than the pivot
+* to the right. This is done recursively which sorts the array.
+* The merge step does nothing.
+*
+* \param arr The array to sort (ptr)
+* \param start The starting index of the array
+* \param end The ending index of the array
+*/
+void QuickSort(int arr[], int start, int end)
 {
-
+	if (start < end)
+	{
+		int pivot = partition(arr, start, end);
+		QuickSort(arr, start, pivot - 1);
+		QuickSort(arr, pivot + 1, end);
+	}
 }
