@@ -206,11 +206,6 @@ void InsertionSort(int arr[], size_t len)
 */
 void BubbleSort(int arr[], size_t len)
 {
-	clock_t tend;				///< The ending time
-	double duration;			///< Time spent running
-	clock_t tbegin = clock();	///< Get starting time
-	
-
 	int swapped = 1;	///< Flag set when an element is swapped
 
 	/// Continue bubblesorting if elements have been swapped
@@ -230,11 +225,6 @@ void BubbleSort(int arr[], size_t len)
 		}
 	}
 
-	tend = clock();	///< Get ending time
-
-	/// Get duration in seconds
-	duration = (double)(tend - tbegin) * 1000 / CLOCKS_PER_SEC;
-	printf("Time spent running: %f ms\n", duration);
 }
 
 /** Sort the array using the Selection sort algorithm
@@ -274,7 +264,6 @@ void MergeSort(int arr[], int start, int end)
 	/// Only call recursively if there is more than 1 item in sub array
 	if (start < end)
 	{
-		printf("MergeSort calling recursively\n");
 		/// Index of middle. We want to cut off the decimal hence int
 		int mid = (start + end) / 2;		///< IF this doesn't work maybe use round or floor
 		MergeSort(arr, start, mid);
@@ -299,6 +288,7 @@ void MergeSort(int arr[], int start, int end)
 */
 void QuickSort(int arr[], int start, int end)
 {
+	/// Partition if there is more than 1 element
 	if (start < end)
 	{
 		int pivot = partition(arr, start, end);
