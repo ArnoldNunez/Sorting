@@ -10,7 +10,7 @@
 #include <string.h>
 
 /// The maximun allowed size of our arrays
-#define MAX_SIZE 255
+#define SORTING_MAX_SIZE_OF_ARRAYS 16384
 
 
 /**
@@ -37,7 +37,7 @@ void PrintContent(int arr[], size_t len)
 int main(int argc, char* argv[])
 {
 	FILE* numList;				///< Ptr to the file with list of nums
-	int numArray[MAX_SIZE];		///< Where we will put all of the list nums
+	int numArray[SORTING_MAX_SIZE_OF_ARRAYS];		///< Where we will put all of the list nums
 	int ndx = 0;				///< Index for placing numbers into array
 
 	printf("Welcome to Arnold's sorting program\n");
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
 	while (fscanf(numList, "%d", &numArray[ndx]) != EOF) { ndx++; }
 	fclose(numList);
 
-	PrintContent(numArray, 10);
+	//PrintContent(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
 
 
 	/// Variables to keep track of time
@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
 		printf("Running insertion sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		InsertionSort(numArray, 10);
+		InsertionSort(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
 		tend = clock();
 	}
 	else if (strcmp("quick", argv[2]) == 0)
@@ -94,7 +94,7 @@ int main(int argc, char* argv[])
 		printf("Running quick sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		QuickSort(numArray, 0, 9);
+		QuickSort(numArray, 0, SORTING_MAX_SIZE_OF_ARRAYS - 1);
 		tend = clock();
 	}
 	else if (strcmp("bubble", argv[2]) == 0)
@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 		printf("Running bubble sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		BubbleSort(numArray, 10);
+		BubbleSort(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
 		tend = clock();
 	}
 	else if (strcmp("selection", argv[2]) == 0)
@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
 		printf("Running selection sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		SelectionSort(numArray, 10);
+		SelectionSort(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
 		tend = clock();
 	}
 	else if (strcmp("merge", argv[2]) == 0)
@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
 		printf("Running merge sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		MergeSort(numArray, 0, 9);
+		MergeSort(numArray, 0, SORTING_MAX_SIZE_OF_ARRAYS - 1);
 		tend = clock();
 	}
 	else
@@ -132,11 +132,11 @@ int main(int argc, char* argv[])
 		return 4;
 	}
 
+	PrintContent(numArray, 100);
+
 	/// Show the running time of the algorithm
 	duration = (double)(tend - tbegin) * 1000 / CLOCKS_PER_SEC;
-	printf("Time spent running: %f ms\n", duration);
-
-	PrintContent(numArray, 10);
+	printf("Time spent sorting: %f ms\n", duration);
 	
 	return 0;
 }

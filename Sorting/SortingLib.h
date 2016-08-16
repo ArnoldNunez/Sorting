@@ -1,6 +1,3 @@
-#ifndef _SORTINGLIB_H
-#define _SORTINGLIB_H
-
 /**
  * \file SortingLib.h
  *
@@ -9,6 +6,10 @@
  * \brief Functions that will demonstrate the usages
  *		of different sorting algorithms.
  */
+
+#ifndef _SORTINGLIB_H
+#define _SORTINGLIB_H
+
 
 #include <stdlib.h>
 #include <stdio.h>

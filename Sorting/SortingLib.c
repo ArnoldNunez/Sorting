@@ -32,7 +32,6 @@ void Insert(int arr[], size_t rloc, int item)
 		printf("index: %d\n", i);*/
 	}
 
-	printf("Inserting at: %d\n", i + 1);
 	/// Insert new item into list
 	arr[i + 1] = item;
 }
