@@ -4,7 +4,7 @@
  * \author Arnold Nunez
  *
  * \brief Functions that will demonstrate the usages
- *		of different sorting algorithms.
+ *	of different sorting algorithms.
  */
 
 #ifndef _SORTINGLIB_H

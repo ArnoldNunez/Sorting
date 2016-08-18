@@ -9,23 +9,17 @@
 #include <stdio.h>
 #include <string.h>
 
+/** Constants */
 /// The maximun allowed size of our arrays
+/// NOTE: The higher this is the more likely the
+/// program is to crash on machines with
+/// little memory available
 #define SORTING_MAX_SIZE_OF_ARRAYS 16384
 
 
-/**
- * Print the contents of the array (for testing purposes)
- *
- * \param arr The array to print the contents of
- * \param len The # of elements in the array
- */
-void PrintContent(int arr[], size_t len)
-{
-	for (size_t i = 0; i < len; ++i)
-	{
-		printf("Element: %d\n", arr[i]);
-	}
-}
+
+/** Prototype functions */
+void PrintContent(int arr[], size_t len);
 
 
 
@@ -36,14 +30,16 @@ void PrintContent(int arr[], size_t len)
  */
 int main(int argc, char* argv[])
 {
-	FILE* numList;				///< Ptr to the file with list of nums
+	FILE* numList;									///< Ptr to the file with list of nums
 	int numArray[SORTING_MAX_SIZE_OF_ARRAYS];		///< Where we will put all of the list nums
-	int ndx = 0;				///< Index for placing numbers into array
+	int ndx = 0;									///< Index for placing numbers into array
+
+	/// Variables to keep track of time
+	clock_t tend;		///< The ending time of the algorithm
+	clock_t tbegin;		///< The starting time of the algorithm
+	double duration;	///< The amount of time the algorithm spent running (ms)
 
 	printf("Welcome to Arnold's sorting program\n");
-
-
-
 
 
 	/// Error checking -- 2 arguments required	
@@ -64,28 +60,19 @@ int main(int argc, char* argv[])
 	}
 
 
-
-
 	/// Read numbers from file and store them in numArray
-	while (fscanf(numList, "%d", &numArray[ndx]) != EOF) { ndx++; }
+	while (fscanf(numList, "%d", &numArray[ndx]) != EOF) { ++ndx; }
 	fclose(numList);
 
-	//PrintContent(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
 
-
-	/// Variables to keep track of time
-	clock_t tend;		///< The ending time of the algorithm
-	clock_t tbegin;		///< The starting time of the algorithm
-	double duration;	///< The amount of time the algorithm spent running (ms)
-
-	/// Sorting algorithm selection
+	/** Sorting algorithm selection */
 	if (strcmp("insertion", argv[2]) == 0)
 	{
 		/// Run insertion sort on numbers array
 		printf("Running insertion sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		InsertionSort(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
+		InsertionSort(numArray, ndx);
 		tend = clock();
 	}
 	else if (strcmp("quick", argv[2]) == 0)
@@ -94,7 +81,7 @@ int main(int argc, char* argv[])
 		printf("Running quick sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		QuickSort(numArray, 0, SORTING_MAX_SIZE_OF_ARRAYS - 1);
+		QuickSort(numArray, 0, ndx - 1);
 		tend = clock();
 	}
 	else if (strcmp("bubble", argv[2]) == 0)
@@ -103,7 +90,7 @@ int main(int argc, char* argv[])
 		printf("Running bubble sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		BubbleSort(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
+		BubbleSort(numArray, ndx);
 		tend = clock();
 	}
 	else if (strcmp("selection", argv[2]) == 0)
@@ -112,7 +99,7 @@ int main(int argc, char* argv[])
 		printf("Running selection sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		SelectionSort(numArray, SORTING_MAX_SIZE_OF_ARRAYS);
+		SelectionSort(numArray, ndx);
 		tend = clock();
 	}
 	else if (strcmp("merge", argv[2]) == 0)
@@ -121,7 +108,7 @@ int main(int argc, char* argv[])
 		printf("Running merge sort algorithm, please wait...\n");
 
 		tbegin = clock();
-		MergeSort(numArray, 0, SORTING_MAX_SIZE_OF_ARRAYS - 1);
+		MergeSort(numArray, 0, ndx - 1);
 		tend = clock();
 	}
 	else
@@ -132,11 +119,26 @@ int main(int argc, char* argv[])
 		return 4;
 	}
 
-	PrintContent(numArray, 100);
+	/// Print contents of sorted array
+	PrintContent(numArray, ndx);
 
 	/// Show the running time of the algorithm
 	duration = (double)(tend - tbegin) * 1000 / CLOCKS_PER_SEC;
 	printf("Time spent sorting: %f ms\n", duration);
 	
 	return 0;
+}
+
+/**
+* Print the contents of the array
+*
+* \param arr The array to print the contents of (ptr)
+* \param len The # of elements in the array
+*/
+void PrintContent(int arr[], size_t len)
+{
+	for (size_t i = 0; i < len; ++i)
+	{
+		printf("Element: %d\n", arr[i]);
+	}
 }
